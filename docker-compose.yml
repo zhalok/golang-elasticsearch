@@ -1,0 +1,19 @@
+services:
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.14.1
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - ELASTIC_PASSWORD=12345
+      - xpack.security.http.ssl.enabled=false
+
+    healthcheck:
+      test:
+        ["CMD-SHELL", "curl -f http://elastic:12345@localhost:9200 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

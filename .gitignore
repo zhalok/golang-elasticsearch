@@ -1,0 +1,7 @@
+# Ignore .env file
+.env
+
+# Ignore other environment files if needed
+.env.local
+.env.development
+.env.test
